@@ -1,0 +1,137 @@
+---
+import { Image } from 'astro:assets';
+import background from '/src/assets/hero/hero.webp';
+
+import { withBase } from '../lib/paths';
+---
+
+<header class="relative min-h-screen overflow-hidden">
+  <div class="absolute inset-0">
+    <Image
+      src={background}
+      alt="Hero"
+      fetchpriority="high"
+      class="absolute inset-0 h-full w-full object-cover object-center"
+    />
+    <div class="absolute inset-0 bg-black/70" aria-hidden="true"></div>
+  </div>
+
+  <div
+    class="container relative z-10 mx-auto mt-6 flex w-full flex-col items-center px-4 py-4 sm:px-6 md:flex-row md:items-start md:justify-between md:py-6"
+  >
+    <div class="drawer drawer-start w-full md:hidden">
+      <input id="mobile-menu-drawer" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content flex w-full justify-start">
+        <label
+          for="mobile-menu-drawer"
+          class="btn btn-ghost border border-white/25 text-white hover:bg-white/10"
+          aria-label="Open menu"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            class="h-6 w-6 stroke-current"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </label>
+      </div>
+      <div class="drawer-side z-20">
+        <label
+          for="mobile-menu-drawer"
+          aria-label="Close menu"
+          class="drawer-overlay bg-transparent"></label>
+        <ul
+          class="menu min-h-full w-64 border-r border-white/25 bg-transparent p-6 text-white backdrop-blur-sm"
+        >
+          <li>
+            <a href={withBase()} class="font-antonio tracking-wide">Головна</a>
+          </li>
+          <li>
+            <a href={withBase('#about')} class="font-antonio tracking-wide"
+              >Про мене</a
+            >
+          </li>
+          <li>
+            <a href={withBase('#price')} class="font-antonio tracking-wide"
+              >Прайс та умови</a
+            >
+          </li>
+          <li>
+            <a href={withBase('#portfolio')} class="font-antonio tracking-wide"
+              >Портфоліо</a
+            >
+          </li>
+          <li>
+            <a href={withBase()} class="font-antonio tracking-wide">Контакти</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <nav aria-label="Main left" class="hidden md:block">
+      <ul
+        class="flex w-40 flex-col justify-center border-r border-white/25 pb-12 lg:w-56"
+      >
+        <li class="flex flex-col">
+          <a
+            href={withBase('#about')}
+            class="link link-hover py-4 font-antonio tracking-wide text-white lg:py-6"
+            >Про мене</a
+          >
+          <div class="border-b border-white/25 w-full"></div>
+        </li>
+        <li class="flex flex-col">
+          <a
+            href={withBase('#price')}
+            class="link link-hover py-4 font-antonio tracking-wide text-white lg:py-6"
+            >Прайс та умови</a
+          >
+          <div class="border-b border-white/25 w-full"></div>
+        </li>
+      </ul>
+    </nav>
+    <div
+      class="mt-8 flex flex-col items-center justify-center px-2 text-center md:mt-0"
+    >
+      <h1
+        class="font-antonio py-6 text-4xl tracking-wide text-white opacity-25 sm:py-8 sm:text-6xl xl:text-8xl"
+      >
+        Yulia Kovalenko
+      </h1>
+      <p
+        class="font-antonio text-base tracking-wide text-white opacity-50 sm:text-lg md:text-xl"
+      >
+        photographer
+      </p>
+    </div>
+
+    <nav aria-label="Main right" class="hidden md:block">
+      <ul
+        class="flex w-40 flex-col justify-center border-l border-white/25 pb-12 lg:w-56"
+      >
+        <li class="flex flex-col items-end">
+          <a
+            href={withBase('#portfolio')}
+            class="link link-hover py-4 font-antonio tracking-wide text-white lg:py-6"
+            >Портфоліо</a
+          >
+          <div class="w-full border-b border-white/25"></div>
+        </li>
+        <li class="flex flex-col items-end">
+          <a
+            href={withBase()}
+            class="link link-hover py-4 font-antonio tracking-wide text-white lg:py-6"
+            >Контакти</a
+          >
+          <div class="w-full border-b border-white/25"></div>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

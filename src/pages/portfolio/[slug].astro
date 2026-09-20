@@ -1,0 +1,89 @@
+---
+import { Image, getImage } from 'astro:assets';
+
+import Layout from '../../layouts/Layout.astro';
+import { withBase } from '../../lib/paths';
+import { getAlbum, getAlbums } from '../../lib/portfolio';
+
+export function getStaticPaths() {
+  return getAlbums().map((album) => ({
+    params: { slug: album.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const album = getAlbum(slug ?? '');
+
+if (!album) {
+  throw new Error(`Unknown album: ${slug}`);
+}
+---
+
+<Layout compact title={`${album.title} — Yilia Kovalenko Photographer`}>
+  <section
+    class="container mx-auto flex-initial px-4 py-10 md:py-16 min-h-[calc(100dvh-4rem-3rem)]"
+  >
+    <div class="mx-auto flex w-full max-w-7xl flex-col gap-8 md:gap-12">
+      <div>
+        <a
+          href={withBase('#portfolio')}
+          class="font-antonio link link-hover text-base text-black/70"
+        >
+          ← До портфоліо
+        </a>
+        <h1
+          class="font-antonio mt-4 text-2xl text-black md:text-3xl lg:text-4xl"
+        >
+          {album.title}
+        </h1>
+        <p class="font-antonio mt-2 text-base text-black/70 md:text-lg">
+          {album.description}
+        </p>
+      </div>
+      <ul
+        id="gallery"
+        class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6"
+      >
+        {
+          album.photos.map(async (photo) => {
+            const optimizedImage = await getImage({
+              src: photo.src,
+              width: 1920,
+            });
+            return (
+              <li class="overflow-hidden rounded-xl">
+                <a
+                  href={optimizedImage.src}
+                  data-pswp-width={optimizedImage.attributes.width}
+                  data-pswp-height={optimizedImage.attributes.height}
+                  target="_blank"
+                >
+                  <Image
+                    src={photo.src}
+                    alt={album.title}
+                    widths={[400, 640, 960, 1280]}
+                    sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+                    class="aspect-[3/4] h-auto w-full object-cover object-center"
+                  />
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
+  </section></Layout
+>
+
+<script>
+  import PhotoSwipeLightbox from 'photoswipe/lightbox';
+  import 'photoswipe/style.css';
+
+  const lightbox = new PhotoSwipeLightbox({
+    gallery: '#gallery',
+    children: 'a',
+    pswpModule: () => import('photoswipe'),
+  });
+
+  lightbox.init();
+</script>

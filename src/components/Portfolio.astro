@@ -1,0 +1,46 @@
+---
+import { Image } from 'astro:assets';
+
+import { withBase } from '../lib/paths';
+import { getAlbums } from '../lib/portfolio';
+
+const albums = getAlbums();
+---
+
+<section
+  id="portfolio"
+  class="container mx-auto flex-initial px-4 py-10 md:py-16"
+>
+  <div class="mx-auto flex w-full max-w-7xl flex-col gap-8 md:gap-12">
+    <h2
+      class="font-antonio text-2xl text-black md:text-3xl lg:text-4xl text-center"
+    >
+      Portfolio
+    </h2>
+    <ul class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 sm:gap-10">
+      {
+        albums.map((album) => (
+          <li>
+            <a href={withBase(`portfolio/${album.slug}`)} class="group block">
+              <div class="overflow-hidden rounded-xl">
+                <Image
+                  src={album.cover}
+                  alt={album.title}
+                  widths={[400, 640, 960]}
+                  sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+                  class="aspect-[3/4] h-auto w-full object-cover object-center transition duration-300 group-hover:scale-105"
+                />
+              </div>
+              <h3 class="font-antonio mt-4 text-xl text-black md:text-2xl">
+                {album.title}
+              </h3>
+              <p class="font-antonio mt-1 text-base text-black/70">
+                {album.description}
+              </p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

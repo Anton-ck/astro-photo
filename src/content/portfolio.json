@@ -1,0 +1,53 @@
+[
+  {
+    "slug": "children",
+    "title": "Дитячі портрети",
+    "description": ""
+  },
+  {
+    "slug": "man_portraits",
+    "title": "Чоловічі портрети",
+    "description": ""
+  },
+  {
+    "slug": "women_portraits",
+    "title": "Жіночі портрети",
+    "description": ""
+  },
+  {
+    "slug": "wedding",
+    "title": "Весілля",
+    "description": ""
+  },
+  {
+    "slug": "family",
+    "title": "Сімейні",
+    "description": ""
+  },
+
+  {
+    "slug": "ceremony",
+    "title": "Хрещення та вінчання",
+    "description": ""
+  },
+  {
+    "slug": "holidays",
+    "title": "Святкові події",
+    "description": ""
+  },
+  {
+    "slug": "reportage",
+    "title": "Репортаж",
+    "description": ""
+  },
+  {
+    "slug": "trip",
+    "title": "Подорожі",
+    "description": ""
+  },
+  {
+    "slug": "secret",
+    "title": "Ню",
+    "description": ""
+  }
+]

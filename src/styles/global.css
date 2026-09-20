@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&display=swap');
+@import 'tailwindcss';
+
+@plugin "@tailwindcss/typography";
+
+@plugin "daisyui" {
+  themes: light --default;
+}
+
+@theme {
+  --font-antonio: 'Antonio', sans-serif;
+}
